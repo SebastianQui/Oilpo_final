@@ -24,10 +24,12 @@ Route::get('/', function () {
 });
 
 
+
 //RUTAS ADMIN O PRINCIPALES
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 //RUTAS SERVICIOS
@@ -37,11 +39,13 @@ Route::post('/servicios', [App\Http\Controllers\ServicioController::class, 'serv
 Route::post('/servicios{servicio}', [App\Http\Controllers\ServicioController::class, 'editar_servicio' ])->name('Servicio_editar');
 
 
+
 //RUTAS CLIENTES
 
 Route::resource('/clientes', App\Http\Controllers\ClienteController::class);
 Route::post('/clientes', [App\Http\Controllers\ClienteController::class, 'cliente_guardar'])->name('ClienteGuardar');
 Route::put('/clientes{cliente}', [App\Http\Controllers\ClienteController::class , 'Editar_cliente'])->name('editar_cliente');
+
 
 
 //RUTAS PROVEEDORES
@@ -50,6 +54,7 @@ Route::resource('/proveedores', App\Http\Controllers\ProveedoreController::class
 Route::post('/proveedores', [App\Http\Controllers\ProveedoreController::class, 'guardar_proveedor'])->name('Proveedores_guardar');
 Route::put('/proveedores{proveedore}', [App\Http\Controllers\ProveedoreController::class, 'editar_proveedor' ])->name('editar');
 Route::put('/proveedores', [App\Http\Controllers\ProveedoreController::class, 'cerrar'])->name('Proveedorescerrar');
+
 
 
 //RUTAS USUARIOS
@@ -61,12 +66,11 @@ Route::post('/usuarios', [App\Http\Controllers\UsuarioController::class, 'usuari
 
 
 //RUTAS PRODUCTOS
+
 Route::resource('/productos', App\Http\Controllers\ProductoController::class);
 Route::post('/productos', [App\Http\Controllers\ProductoController::class, 'guardar'])->name('ProductoGuardar');
 Route::put('/productos{producto}', [App\Http\Controllers\ProductoController::class, 'editar'])->name('ProductoEditar');
 Route::put('/productos', [App\Http\Controllers\ProductoController::class, 'update_status'])->name('Editar_estado');
-
-
 
 
 
@@ -77,8 +81,6 @@ Route::put('/compras/Agregar_compra', [App\Http\Controllers\ComprasController::c
 Route::post('/compras/Agregar_compra', [App\Http\Controllers\ComprasController::class, 'Agregar_producto_compra'])->name('Agregar_producto_compra');
 Route::post('/compras', [App\Http\Controllers\ComprasController::class, 'Agregar_compra'])->name('Guardar_compra');
 Route::post('/compras/agregar.php', [App\Http\Controllers\ComprasController::class]);
-
-
 
 
 
