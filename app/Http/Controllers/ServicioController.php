@@ -114,7 +114,7 @@ class ServicioController extends Controller
     // }
     public function editar_servicio(Servicio  $servicio){
         $campos = request()->validate([
-            'nombre' =>'required|min:3',
+            'nombre' =>'required',
             'valor'=> 'required',
         ]);
         $servicio->update($campos);

@@ -32,6 +32,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
+//RUTAS ROLES
+
+Route::resource('/roles', App\Http\Controllers\RolesController::class);
+Route::post('/roles', [App\Http\Controllers\RolesController::class, 'guardar' ])->name('Roles_guardar');
+Route::put('/roles{role}', [App\Http\Controllers\RolesController::class, 'editar' ])->name('Roles_editar');
+
+
+
 //RUTAS SERVICIOS
 
 Route::resource('/servicios', App\Http\Controllers\ServicioController::class);

@@ -47,7 +47,7 @@ return [
     |
     */
 
-    'logo' => '<b>OIL</b>PO',
+    'logo' => '<b><i>OIL<text style="color:red;">PO</text></i></b>',
     'logo_img ' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     // 'logo_img_class' => 'brand-image img-circle elevation-3',
     // 'logo_img_xl' => null,
@@ -258,7 +258,7 @@ return [
 
         [
             'text'        => 'Roles',
-            'url'         => 'home',
+            'url'         => 'roles',
             'icon'        => 'fas fa-tag',
             'label_color' => 'success',
         ],
