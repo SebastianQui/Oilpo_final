@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\ciudades;
 use App\Models\Proveedore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 /**
  * Class ProveedoreController
@@ -139,5 +141,25 @@ class ProveedoreController extends Controller
     }
     public function cerrar(){
        header('Location:proveedores.index');
+    }
+
+    public function update_status(){
+        $id = $_POST['id'];
+        $activo = isset($_POST['Activo']);
+        $campos = request()->validate([
+            'estado' =>' '
+        ]);
+        if($activo=="Activo"){
+            DB::update("UPDATE proveedores SET estado ='Inactivo' WHERE id='".$id."'");
+            return redirect()->route('proveedores.index');
+
+
+
+        }else{
+            DB::update("UPDATE proveedores SET estado ='Activo' WHERE id ='".$id."'");
+            return redirect()->route('proveedores.index');
+
+        }
+
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class UsuarioController
@@ -127,11 +128,35 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
-    {
-        $usuario = Usuario::find($id)->delete();
+    // public function destroy($id)
+    // {
+    //     $usuario = Usuario::find($id)->delete();
 
-        return redirect()->route('usuarios.index')
-            ->with('borrado', 'Usuario deleted successfully');
+    //     return redirect()->route('usuarios.index')
+    //         ->with('borrado', 'Usuario deleted successfully');
+    // }
+
+    public function update_status(){
+        $id = $_POST['id'];
+        $activo = isset($_POST['Activo']);
+        $campos = request()->validate([
+            'estado' =>' '
+        ]);
+        if($activo=="Activo"){
+            DB::update("UPDATE usuarios SET estado ='Inactivo' WHERE id='".$id."'");
+            return redirect()->route('usuarios.index');
+
+
+
+        }else{
+            DB::update("UPDATE usuarios SET estado ='Activo' WHERE id ='".$id."'");
+            return redirect()->route('usuarios.index');
+
+        }
+
+
+
+
+
     }
 }

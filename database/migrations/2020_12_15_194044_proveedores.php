@@ -21,6 +21,7 @@ class Proveedores extends Migration
             $table->String('Telefono_proveedor');
             $table->String('Ciudad_proveedor');
             $table->String('Direccion_proveedor');
+            $table ->enum('estado', ['Activo', 'Inactivo']);
             $table->timestamps();
         });
     }

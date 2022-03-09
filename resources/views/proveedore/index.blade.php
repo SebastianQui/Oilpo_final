@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $.fn.modal.Constructor.prototype.enforceFocus = function() {};
 
@@ -54,7 +53,7 @@
 
                                 <div class="mb-3">
                                     <label for="message-text" class="col-form-label">Tipo Documento:</label>
-                                    <select require class="form-select" id="recipient-name"name="Tipo_Doc_proveedor" >
+                                    <select require class="form-select"  id="js-example-disabled-results"name="Tipo_Doc_proveedor" >
                                         <option class="form-control" id="recipient-name" value="" >Seleccione tipo documento...</option>
                                         <option class="form-control" id="recipient-name" value="Cédula de ciudadania">Cédula de ciudadania</option>
                                         <option class="form-control" id="recipient-name" value="Cédula Extranjeria">Cédula Extranjeria</option>
@@ -136,7 +135,7 @@
 
                     <div class="card-body">
                         <div class="table">
-                            <table class="table table-striped table-hover" id="tabla">
+                            <table class="table table-striped table-hover " id="tabla">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
@@ -164,22 +163,45 @@
 											<td>{{ $proveedore->Direccion_proveedor }}</td>
 
                                             <td>
-                                                <form  class="borrar" action="{{ route('proveedores.destroy',$proveedore->id) }}" method="POST">
-
+                                                <?php if($proveedore->estado=="Activo"){ ?>
                                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editar{{$proveedore->id}}" data-bs-whatever="@mdo">Editar
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                                         <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
                                                     </svg>
                                                     </button>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"> Eliminar
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                                <?php }else{ ?>
+                                                    <button disabled type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editar{{$proveedore->id}}" data-bs-whatever="@mdo">Editar
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
                                                     </svg>
                                                     </button>
+                                                <?php } ?>
+                                            </td>
+                                            <td>
+                                            <form action="{{ route('Editar_estado_proveedor') }}" method="POST">
+                                                    @csrf @method('PUT')
 
+                                                    <?php if($proveedore->estado=="Activo") { ?>
+                                                        <input  hidden type="number" name="id" value="<?php echo $proveedore->id ?>">
+                                                        <input hidden type="text" name="Activo" id="" value="<?php echo $proveedore->estado ?>">
+                                                        <button type="submit" class="btn btn-success"><?php echo $proveedore->estado ?>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                                                                <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                                                                <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                                                            </svg>
+                                                        </button>
+                                                    <?php }else{ ?>
+                                                        <input hidden  type="number" name="id" value="<?php echo $proveedore->id ?>">
+                                                        <input hidden  type="text" name="Inactivo" id="" value="<?php echo $proveedore->estado ?>">
+                                                        <button type="submit" class="btn btn-secondary">
+                                                            <?php echo $proveedore->estado ?>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                                                                <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
+                                                                <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+                                                                <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
+                                                            </svg>
+                                                        </button>
+                                                    <?php } ?>
                                                 </form>
                                             </td>
                                         </tr>
@@ -274,10 +296,22 @@
                                     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
                                     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
                                     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-                                    <script>$('#tabla').DataTable({"language": {"url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}}); </script>
+                                    <script>
+                                        $('#tabla').DataTable({"language": {"url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
+                                        $(document).ready(function(){
+                                            let table = $('#tabla').DataTable({
+                                                reponsive:true
+
+                                            });
+
+
+                                        });
+
+                                    </script>
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-                            </table>
+
                         </div>
+                         </table>
                     </div>
                 </div>
                 {!! $proveedores->links() !!}
@@ -351,5 +385,10 @@
             location.reload();
 
         }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        let $disabledResults = $("#js-example-disabled-results");
+        $disabledResults.select2();
     </script>
 @endsection

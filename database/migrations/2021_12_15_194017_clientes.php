@@ -21,6 +21,7 @@ class Clientes extends Migration
             $table->String('Apellidos');
             $table->String('Telefono');
             $table->String('Direccion');
+            $table ->enum('estado', ['Activo', 'Inactivo']);
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 @endsection
 @section('template_title')
 
@@ -76,7 +77,7 @@
                 <div class="card">
                     <div class="card-body">
                     <p id="total"></p>
-                    <table id="tabla" class="table table-striped table-hover">
+                    <table id="tabla" class="table">
                         <thead>
 
                             <tr>
@@ -112,9 +113,14 @@
     </div>
 </div>
 @yield('js')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
         $(document).ready(function(){
             $('#agregar').click(function(){
                 agregar();
@@ -136,10 +142,10 @@
                 subtotal[cont]=(cantidad*precio_compra);
                 total = total+subtotal[cont];
 
-                var fila = '<tr class="selected" id="fila'+cont+'"><td><input type="text" name="Producto[]" value="'+producto+'"></td><td><input type="number" name="Cantidad[]" value="'+cantidad+'"></td><td><input type="number" name="Precio_compra[]" value="'+precio_compra+'"></td><td><input type="number" name="Precio_venta[]" value="'+precio_venta+'"></td><td>'+subtotal[cont]+'</td><td><button class="btn btn-danger" onclick="eliminar('+cont+');" >X</button></td></tr>';
+                var fila = '<tr id="fila'+cont+'"><td><input type="text" name="Producto[]" value="'+producto+'"></td><td><input type="number" name="Cantidad[]" value="'+cantidad+'"></td><td><input type="number" name="Precio_compra[]" value="'+precio_compra+'"></td><td><input type="number" name="Precio_venta[]" value="'+precio_venta+'"></td><td>'+subtotal[cont]+'</td><td><button class="btn btn-danger" onclick="eliminar('+cont+');" >X</button></td></tr>';
                 cont++;
                 limpiar();
-                $('#total').html('<h1 class="btn btn-info">Total: $'+total+'</h1>');
+                $('#total').html('<h1 class="btn btn-info">Total: $'+total+'<input type="number" name="Total" value="'+total+'"  ></h1>');
                 evaluar();
                 $('#tabla').append(fila);
 
@@ -175,6 +181,7 @@
         }
 
 </script>
+
 <!-- <script>
     jQuery(document).on('submit', '#form_insert', function(event){
         event.preventDefault();

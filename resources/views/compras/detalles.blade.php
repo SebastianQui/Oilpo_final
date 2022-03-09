@@ -39,26 +39,18 @@
                                 </thead>
                                 <tbody>
                                 <?php foreach ($detalles as $detalle){ ?>
-
                                     <tr>
-
                                         <td><?php echo $detalle->Producto ?></td>
                                         <td><?php echo $detalle->Cantidad ?></td>
                                         <td><?php echo $detalle->Precio_compra ?></td>
                                         <td><?php echo $detalle->Fecha_compra ?></td>
-                                        <td><img src="{{ asset('public'.'/'.$detalle->Foto) }}" alt="" width="200"></td>
-
+                                        <td><img src="{{ asset('storage').'/'.$detalle->Foto  }}" alt="A" width="200"></td>
                                     </tr>
-
                                 </tbody>
                                 <?php } ?>
 
                             </table>
-
-
-
-
-
+                            <h5>Total compra $<?php echo $Total ?></h5>
                         </div>
                     </div>
                 </div>

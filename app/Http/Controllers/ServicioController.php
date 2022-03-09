@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Servicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ServicioController
@@ -11,6 +12,10 @@ use Illuminate\Http\Request;
  */
 class ServicioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -110,7 +115,7 @@ class ServicioController extends Controller
     // }
     public function editar_servicio(Servicio  $servicio){
         $campos = request()->validate([
-            'nombre' =>'required|min:3',
+            'nombre' =>'required',
             'valor'=> 'required',
         ]);
         $servicio->update($campos);
@@ -129,4 +134,28 @@ class ServicioController extends Controller
         return redirect()->route('servicios.index')
             ->with('borrado', 'Servicio deleted successfully');
     }
+
+    public function update_status(){
+        $id = $_POST['id'];
+        $activo = isset($_POST['Activo']);
+        $campos = request()->validate([
+            'estado' =>' '
+        ]);
+        if($activo=="Activo"){
+            DB::update("UPDATE servicios SET estado ='Inactivo' WHERE id='".$id."'");
+            return redirect()->route('servicios.index');
+
+
+
+        }else{
+            DB::update("UPDATE servicios SET estado ='Activo' WHERE id ='".$id."'");
+            return redirect()->route('servicios.index');
+
+        }
+
+
+
+
+
+}
 }

@@ -17,6 +17,7 @@ class Servicios extends Migration
             $table->bigIncrements('id');
             $table->String('nombre');
             $table->Integer('valor');
+            $table ->enum('estado', ['Activo', 'Inactivo']);
             $table->timestamps();
         });
     }
@@ -30,4 +31,5 @@ class Servicios extends Migration
     {
         Schema::dropIfExists('servicios');
     }
+    
 }

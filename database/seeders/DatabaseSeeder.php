@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 use App\Models\ciudades;
+use App\Models\Proveedore;
+use App\Models\permiso;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +16,46 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+    //SEEDERS PERMISOS
+
+    $permiso = new permiso();
+    $permiso->Nombre = "Usuarios";
+    $permiso->save();
+
+    $permiso = new permiso();
+    $permiso->Nombre = "Roles";
+    $permiso->save();
+
+    $permiso = new permiso();
+    $permiso->Nombre = "Compras";
+    $permiso->save();
+
+    $permiso = new permiso();
+    $permiso->Nombre = "Ventas";
+    $permiso->save();
+
+    $permiso = new permiso();
+    $permiso->Nombre = "Informes";
+    $permiso->save();
+
+
+
+
+
+    //SEEDERS DEL PROVEEDOR
+
+    $proveedor = new Proveedore();
+    $proveedor->Tipo_Doc_proveedor = "NIT";
+    $proveedor->Documento_proveedor = "10023747499";
+    $proveedor->Nombre_proveedor = "YAMAHA";
+    $proveedor->Telefono_proveedor = "3136784903";
+    $proveedor->Ciudad_proveedor = "Springfield";
+    $proveedor->Direccion_proveedor = "avenida siempre viva 742";
+    $proveedor->save();
+
+    //SEEDERS CIUDADES
+
 	$ciudad = new ciudades();
         $ciudad->Nombre = 'Armenia';
         $ciudad->save();

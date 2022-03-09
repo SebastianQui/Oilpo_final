@@ -21,6 +21,7 @@ class Compra extends Migration
             $table->string('Foto')->nullable();
             $table->string('Producto');
             $table->integer('Precio_compra');
+            $table->integer('Total');
             $table->integer('Precio_venta');
             $table->integer('Cantidad');
             $table->timestamps();

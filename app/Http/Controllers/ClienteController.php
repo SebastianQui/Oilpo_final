@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ClienteController
@@ -131,4 +132,28 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index')
             ->with('borrado', 'Proveedore deleted successfully');
     }
+
+    public function update_status(){
+        $id = $_POST['id'];
+        $activo = isset($_POST['Activo']);
+        $campos = request()->validate([
+            'estado' =>' '
+        ]);
+        if($activo=="Activo"){
+            DB::update("UPDATE clientes SET estado ='Inactivo' WHERE id='".$id."'");
+            return redirect()->route('clientes.index');
+
+
+
+        }else{
+            DB::update("UPDATE clientes SET estado ='Activo' WHERE id ='".$id."'");
+            return redirect()->route('clientes.index');
+
+        }
+
+
+
+
+
+}
 }

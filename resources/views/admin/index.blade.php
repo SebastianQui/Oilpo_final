@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <p>Bienvenido</p>
+    <p>Bienvenido {{ Auth::user()->name }}</p>
 
 @stop
 

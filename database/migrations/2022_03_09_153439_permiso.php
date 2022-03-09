@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Usuarios extends Migration
+class Permiso extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class Usuarios extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('permisos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('Documento');
-            $table->String('Nombres');
-            $table->String('Apellidos');
-            $table->String('Correo');
-            $table->String('Usuario');
-            $table->String('Password');
-            $table ->enum('estado', ['Activo', 'Inactivo']);
+            $table ->string('Nombre');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ class Usuarios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('permisos');
     }
 }
